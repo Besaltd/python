@@ -18,3 +18,4 @@ Traceback (most recent call last):
 ValueError: invalid literal for int() with base 10: '5a'
 2026-01-27 19:22:43,132 - ERROR - Hausaufgabe_25.py - 28 - ERROR! Incorrect number
 2026-01-27 19:23:09,081 - ERROR - Hausaufgabe_25.py - ERROR! Incorrect number
+2026-01-30 09:25:53,818 - ERROR - Hausaufgabe_25.py - 44 - ERROR! Incorrect number
