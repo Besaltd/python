@@ -29,6 +29,20 @@ def summ(numbers):
 
 print(summ(num))
 
+
+################################################################ 2 Option
+
+def digit_sum(n):
+    if n == 0:
+        return 0
+    number = n % 10
+    another_nums = digit_sum(n // 10)
+    result = number + another_nums
+    return result
+
+
+print(digit_sum(num))
+
 # 2. Сумма вложенных чисел #
 # Напишите рекурсивную функцию, которая суммирует все числа во вложенных списках.  #
 # Данные:
@@ -53,3 +67,17 @@ def summ(arr):
 
 
 print(summ(nested_numbers))
+
+
+################################################################ 2 Option
+def deep_sum(nested_list):
+    total = 0
+    for item in nested_list:
+        if isinstance(item, list):
+            total += deep_sum(item)
+        else:
+            total += item
+    return total
+
+
+print(deep_sum(nested_numbers))
