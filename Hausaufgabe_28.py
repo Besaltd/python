@@ -25,7 +25,7 @@ Sunday: Family time, Rest
 
 Monday: Gym, Work, Read book
 
-Нажмите 'Enter' для получения плана: q
+Нажмите 'Enter' для получения плана:
 """
 weekly_schedule = {"Monday": ["Gym", "Work", "Read book"], "Tuesday": ["Meeting", "Work", "Study Python"],
                    "Wednesday": ["Shopping", "Work", "Watch movie"],
@@ -51,6 +51,19 @@ def planing(schedule):
 planner = planing(weekly_schedule)
 for _ in planner:
     pass
+
+# вариант, который был на уроке без генератора, а просто с итератором
+
+day_cycle = cycle(weekly_schedule.items())
+while True:
+    user_input = input("Нажмите 'Enter' для получения плана или q для выхода")
+    if user_input == 'q':
+        break
+    elif not user_input:
+        day, tasks = next(day_cycle)
+        print(f"{day}: {', '.join(tasks)}")
+    else:
+        print("Некорректный вод, введите пожалуйста верно")
 
 """
 2. Объединение списков продуктов
@@ -111,6 +124,32 @@ gen = to_combination(fruits, vegetables, dairy)
 for _ in gen:
     pass
 
+# решение с генераторными выражениями
+import itertools
+
+
+def merge_products(*product_list):
+    return (item.lower() for item in iterools.chain(*product_list))
+
+
+merge_iterator = merge_products(fruits, vegetables, dairy)
+
+for product in merge_iterator:
+    print(product)
+
+
+# ещё один вариант с урока
+
+
+def join_products(*list):
+    return (item.lower() for value in list for item in value)
+
+
+product = join_products(fruits, vegetables, dairy)
+
+for p in product:
+    print(p)
+
 """
 3. Комбинации одежды
 
@@ -163,3 +202,14 @@ def cloth_options(*categories):
 gen = cloth_options(clothes, colors, sizes)
 for _ in gen:
     print(_)
+
+
+# третий вариант из урока
+
+def generate_outfits(clothes, colors, sizes):
+    return (" - ".join(comb) for comb in itertools.product(clothes, colors, sitez))
+
+
+outfit_iterator = generate_outfits(clothes, colors, sizes)
+for outfit in outfit_iterator:
+    print(outfit)
