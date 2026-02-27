@@ -12,13 +12,13 @@ def measure_time(func):
         times = []
         for _ in range(5):
             start = time.time()
-            func()
+            result = func()
             end = time.time()
             times.append(end - start)
         average = sum(times) / len(times)
         print(f"Среднее время выполнения для 5 раз: {round(average, 2)} секунд")
         print(f"Результат: {func()}")
-        return average
+        return result
     return wrapper
 
 @measure_time
