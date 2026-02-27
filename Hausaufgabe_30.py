@@ -27,25 +27,35 @@ def total_reduce():
     # Чтение JSON файла
     with open(path, "r", encoding="utf-8") as file:
         loaded_data = json.load(file)
+        print(loaded_data)
 
         # находим количество студентов
         total['total_student'] = len(loaded_data)
 
-        # определяем средний возраст студента
-        average_age = [age['birth_date'] for age in loaded_data]
-        age_reduce = 0
-        for num in average_age:
-            birth_date = datetime.strptime(num, "%d.%m.%Y").date()
-            today = datetime.today().date()
-            age = today.year - birth_date.year
-            age_reduce += age
-        total['average_enrollment_age'] = round(age_reduce / len(loaded_data), 1)
+    # определяем средний возраст студента
 
-        # работа с курсами
-        courses = [course['courses'] for course in loaded_data]
-        all_courses = [course for sublist in courses for course in sublist]
-        course_count = Counter(all_courses)
-        total["students_per_course"] = dict(course_count)
+    age_sum = 0
+
+    for student in loaded_data:
+        birth_date = datetime.strptime(student['birth_date'], "%d.%m.%Y").date()
+        enrollment_date = datetime.strptime(student['enrollment_date'], "%d.%m.%Y").date()
+
+        age = enrollment_date.year - birth_date.year
+
+    # корректировка если день рождения ещё не наступил к моменту поступления
+        if (enrollment_date.month, enrollment_date.day) < (birth_date.month, birth_date.day):
+            age -= 1
+
+        age_sum += age
+
+    average_age = round(age_sum / len(loaded_data), 1)
+    total['average_enrollment_age'] = average_age
+
+    # работа с курсами
+    courses = [course['courses'] for course in loaded_data]
+    all_courses = [course for sublist in courses for course in sublist]
+    course_count = Counter(all_courses)
+    total["students_per_course"] = dict(course_count)
 
     # Создание и запись в JSON в файл
     with open("student_courses_report.json", "w") as report:
