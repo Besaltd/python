@@ -17,7 +17,6 @@ def measure_time(func):
             times.append(end - start)
         average = sum(times) / len(times)
         print(f"Среднее время выполнения для 5 раз: {round(average, 2)} секунд")
-        print(f"Результат: {func()}")
         return result
     return wrapper
 
@@ -28,7 +27,7 @@ def compute():
         total += i
     return total
 
-compute()
+print(f"Результат: {compute()}")
 
 
 
