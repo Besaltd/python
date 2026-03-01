@@ -11,10 +11,10 @@ import re
 
 
 def get_date(data):
-    return [print(date) for date in re.findall(r"\d{2}.\d{2}.\d{4}", data)]
+    return re.findall(r"\d{2}[\/\-.]\d{2}[\/\-.]\d{4}", data)
 
 
-get_date(text)
+print(get_date(text))
 
 """ 
 2. Разделение списка тегов

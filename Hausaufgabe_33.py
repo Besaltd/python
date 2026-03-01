@@ -51,7 +51,7 @@ def measure_time(repeats):
             average = sum(times) / len(times)
             print(f"Среднее время выполнения для {repeats} вызовов: {round(average, 2)} секунд")
             print(f"Результат: {result}")
-            return average
+            return result
         return wrapper
     return decorator
 
