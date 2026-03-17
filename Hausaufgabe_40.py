@@ -10,7 +10,14 @@ class Email:
         self.date = date                # дата отправки
 
     
+    def __eq__(self, other):
+        if not isinstance(other, Email):
+            return NotImplemented
+        return self.date == other.date
+
     def __lt__(self, other):
+        if not isinstance(other, Email):
+            return NotImplemented
         return self.date < other.date
 
     def __str__(self):
@@ -52,6 +59,7 @@ class Money:
         if not isinstance(another_class, Money):
             return NotImplemented
         result = self.amount - another_class.amount
+        # return Money(max(result, 0))
         if result < 0:
             result = 0
         return Money(result)
