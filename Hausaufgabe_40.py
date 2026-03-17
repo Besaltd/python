@@ -20,7 +20,8 @@ class Email:
         return len(self.body)
     
     def __bool__(self):
-        return any(not ch.isspace() for ch in self.body)
+        return bool(self.body.strip())
+        # return any(not ch.isspace() for ch in self.body)
     
 
 
@@ -43,9 +44,13 @@ class Money:
         self.amount = amount
     
     def __add__(self, another_class):
+        if not isinstance(another_class, Money):
+            return NotImplemented
         return Money(self.amount + another_class.amount)
     
     def __sub__(self, another_class):
+        if not isinstance(another_class, Money):
+            return NotImplemented
         result = self.amount - another_class.amount
         if result < 0:
             result = 0
