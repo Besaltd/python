@@ -19,7 +19,27 @@ class Email:
         if not isinstance(other, Email):
             return NotImplemented
         return self.date < other.date
+    
+    def __le__(self, other):
+        if not isinstance(other, Email):
+            return NotImplemented
+        return self.date <= other.date
 
+    def __gt__(self, other):
+        if not isinstance(other, Email):
+            return NotImplemented
+        return self.date > other.date
+
+    def __ge__(self, other):
+        if not isinstance(other, Email):
+            return NotImplemented
+        return self.date >= other.date
+    
+    def __ne__(self, other):
+        if not isinstance(other, Email):
+            return NotImplemented
+        return self.date != other.date
+    
     def __str__(self):
         return f"From: {self.sender}\nTo: {self.recipient}\nSubject: {self.subject}\n- {self.body} -"
     
