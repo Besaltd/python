@@ -73,6 +73,10 @@ with connection.cursor() as cursor:
 
     for order, row in enumerate(rows, 1):
         print(f"{order}: {row['title']} - {row['content']}")
+    
+    # with DictCursor
+    # for row in rows:
+    #     print(f"{row['id']} {row['title']} - {row['content']}")
 
 
 connection.commit()
